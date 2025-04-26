@@ -17,13 +17,14 @@ dotenv.config();
 //Initialization
 const app = express();
 //My port running
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 const __dirname = path.resolve();
 
 //parser json the body of the request
 app.use(express.json({ limit: "10mb" })); // parse json from the request
 app.use(cookieParser()); //parse cookies from the request
+
 
 //routes
 app.use("/api/auth", authRoutes);
@@ -36,7 +37,7 @@ app.use("/api/analytics", analyticsRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/dist")));
 
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
   });
 }
