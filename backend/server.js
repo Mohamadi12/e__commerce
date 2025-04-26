@@ -25,7 +25,6 @@ const __dirname = path.resolve();
 app.use(express.json({ limit: "10mb" })); // parse json from the request
 app.use(cookieParser()); //parse cookies from the request
 
-
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
@@ -42,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   //Database connection
   connectDB();
